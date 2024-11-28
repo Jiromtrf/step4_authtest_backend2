@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import mysql.connector
 from passlib.context import CryptContext
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 # パスワードハッシュ化の設定
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -22,10 +23,10 @@ app.add_middleware(
 # DB接続設定
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Spitz8823",
-        database="app_db"
+        host=os.environ.get("tech0-gen-7-step4-studentrdb-1.mysql.database.azure.com", "localhost"),
+        user=os.environ.get("tech0gen7student", "root"),
+        password=os.environ.get("F4XyhpicGw6P", ""),
+        database=os.environ.get("app_db", "app_db")
     )
 
 # リクエストボディ用モデル
