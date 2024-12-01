@@ -16,11 +16,14 @@ app = FastAPI()
 # CORSミドルウェアの設定
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 必要に応じて変更
+    allow_origins=[
+        "https://tech0-gen-7-step4-studentwebapp-pos-1-bcaue8aahsd2gtdd.eastus-01.azurewebsites.net"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # リクエストボディ用モデル
 class LoginRequest(BaseModel):
